@@ -12,7 +12,6 @@ GECKO_PATH = "C://Users//galon//AppData//Local//Programs//Python//Python310//gec
 
 
 def get_pages():
-
     """Gets the raw html of the page showing every state"""
 
     url = "https://www.mtbproject.com/directory/areas"
@@ -36,13 +35,11 @@ def get_state_links():
     for i, a in enumerate(anchors):
         try:
             if a.text.split("\n")[3] in states:
-                states.append(a.text.split("\n")[3])
                 hrefs.append(a.get("href"))
         except IndexError:
             pass
     with open(HREF_PATH, "wb") as f:
         pickle.dump(hrefs, f)
-
 
 if __name__ == "__main__":
 
