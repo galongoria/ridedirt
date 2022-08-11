@@ -130,4 +130,4 @@ dmypy.json
 
 #Sensitive info
 state_abbs.csv
-facebook_groups.csv
+facebook_group.csv
