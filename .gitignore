@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#Sensitive info
+state_abbs.csv
+facebook_groups.csv

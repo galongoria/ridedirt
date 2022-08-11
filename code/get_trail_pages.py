@@ -1,7 +1,7 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import pandas as pd
-import json, os, time, pickle
+import os, time, pickle
 
 RAW_DIR = os.path.join("data", "raw")
 CLEAN_DIR = os.path.join("data", "clean")
