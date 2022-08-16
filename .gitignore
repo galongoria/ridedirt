@@ -131,3 +131,6 @@ dmypy.json
 #Sensitive info
 state_abbs.csv
 facebook_group.csv
+searches.py
+code/website/mysite/mysite/settings.py
+data/pictures
