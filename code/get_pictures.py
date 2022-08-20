@@ -1,9 +1,7 @@
 from datetime import datetime
 import pandas as pd
 import regex as re
-import os
-import urllib.request
-import facebook
+import os, urllib.request, facebook
 from dotenv import load_dotenv
 from searches import get_fb_groups
 
