@@ -32,6 +32,7 @@ def get_all_group_pictures():
     trails = list(get_fb_groups().keys())
 
     for n, group_id in enumerate(id_list):
+        print(trails[n])
         try:
             get_group_picture(str(group_id))
         except facebook.GraphAPIError:
