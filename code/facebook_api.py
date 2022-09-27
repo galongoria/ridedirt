@@ -75,11 +75,11 @@ def get_static():
     group_dict = get_fb_groups()
     l = []
 
-    for trail, group_id in group_dict.items():
+    for trail, value in group_dict.items():
         print(f'Looking at {trail}')
         try:
-            name, datetime_string, pic = get_group_picture(str(group_id))
-            l.append((name, trail, group_id))
+            name, datetime_string, pic = get_group_picture(str(value['id']))
+            l.append((trail, name, value['id'], value['location'],''))
         except facebook.GraphAPIError as error:
             print('!!! Check_id !!!')
     return l

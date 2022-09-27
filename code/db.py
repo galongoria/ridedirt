@@ -25,7 +25,6 @@ class Trail(db.Model):
 	location = db.Column(db.String(100))
 	status = db.Column(db.String(100))
 
-
 	def __init__(self, name, location, status):
 
 		self.front_name = front_name
@@ -46,12 +45,11 @@ def insert_static_trail_data():
 
 
 
-
 if __name__ == "__main__":
 
-	insert_static_trail_data()
-
 	db.create_all()
+
+	insert_static_trail_data()
 
 	
 
