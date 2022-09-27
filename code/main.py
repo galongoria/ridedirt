@@ -1,7 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from datetime import timedelta
 from dotenv import load_dotenv
-from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 from pictures import get_all
 import os
@@ -10,29 +9,34 @@ app=Flask(__name__)
 load_dotenv()
 app.secret_key = os.getenv("secret_key")
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'trails.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.permanent_session_lifetime = timedelta(minutes=5)
 
 db = SQLAlchemy(app)
-ma = Marshmallow(app)
 
-class users(db.Model):
+
+class trails(db.Model):
+
 	_id = db.Column("id", db.Integer, primary_key=True)
 	name = db.Column("name", db.String(100))
-	email = db.Column("email", db.String(100))
+	location = db.Column("locaiton", db.String(100))
+	status = db.Column("status", db.String(100))
 
 	def __init__(self, name, email):
 		self.name = name
-		self.email = email
-
-
+		self.location = location
 
 @app.route("/")
 def home():
 	return render_template("index.html")
 
+@app.route("/")
+def trails():
 
+	status_dict = get_all()
+	for name, status in status_dict.items():
+		
 
 @app.route("/view")
 def view():
