@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Trail Information{% endblock %}
+{% block content %}
+	{% for item1, item2 in values[0::2]|zip_longest(values[1::2])%}
+		{% if item1 == None %}
+			<div class="container">
+				<div class="row justify-content-around">
+				    <div class="col-5">
+				      <p>Trail: {{item2.front_name}}</p>
+				      <p>Status: {{item2.status}}</p>
+				    </div>
+				  	<div class="col-5">
+				    </div>
+		  		</div>
+		  	</div>
+		{% elif item2 == None %}
+			<div class="container">
+				<div class="row justify-content-around">
+				    <div class="col-5">
+				      <p>Trail: {{item1.front_name}}</p>
+				      <p>Status: {{item1.status}}</p>
+				    </div>
+				    <div class="col-5">
+				    </div>
+		  		</div>
+		  	</div>
+		{% else %}
+			<div class="container">
+				<div class="row justify-content-around">
+				    <div class="col-5">
+				      <p>Trail: {{item1.front_name}}</p>
+				      <p>Status: {{item1.status}}</p>
+				    </div>
+				    <div class="col-5">
+				      <p>Trail: {{item2.front_name}}</p>
+				      <p>Status: {{item2.status}}</p>
+				    </div>
+		  		</div>
+		  	</div>
+		{% endif %}
+	{% endfor %}
+{% endblock%}

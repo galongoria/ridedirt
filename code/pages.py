@@ -1,31 +1,29 @@
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from datetime import timedelta
 from dotenv import load_dotenv
-from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
-from pictures import get_all
+from trails import Trail
+from facebook_api import compare_all
+from itertools import zip_longest
 import os
 
-app=Flask(__name__)
+
+### dotenv secrets ###
+
 load_dotenv()
-app.secret_key = os.getenv("secret_key")
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.permanent_session_lifetime = timedelta(minutes=5)
+db_pass = os.getenv("password")
+secret_key = os.getenv("secret_key")
+
+
+### App config and database setup###
+
+app=Flask(__name__)
+app.secret_key = secret_key
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:{db_pass}@localhost/ridedirt'
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] =False
+app.jinja_env.filters['zip_longest'] = zip_longest
 
 db = SQLAlchemy(app)
-ma = Marshmallow(app)
-
-class users(db.Model):
-	_id = db.Column("id", db.Integer, primary_key=True)
-	name = db.Column("name", db.String(100))
-	email = db.Column("email", db.String(100))
-
-	def __init__(self, name, email):
-		self.name = name
-		self.email = email
-
 
 
 @app.route("/")
@@ -33,9 +31,15 @@ def home():
 	return render_template("index.html")
 
 
+@app.route("/trails", methods=["GET"])
+def trails():
+
+	return render_template('trails.html', values=Trail.query.all(), zip_longest=zip_longest)
+
 
 @app.route("/view")
 def view():
+
 	return render_template("view.html", values=users.query.all())
 
 
@@ -89,5 +93,6 @@ def logout():
 
 
 if __name__ == "__main__":
+
 	db.create_all()
 	app.run(debug=True)
