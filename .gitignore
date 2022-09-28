@@ -164,6 +164,15 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+
+# Secret files
+
+code/searches.py
+code/facebook_uc.py
+code/scrape_atx_conditions.py
+code/scrape_mtbproject.py
+
+
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
