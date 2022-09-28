@@ -7,6 +7,8 @@ def get_fb_groups():
             "scrape_url": None,
             "id": "534322359952442",
             "location": "1001 S Dairy Ashford Rd, Houston, TX 77077",
+            "open": '',
+            "closed": '',
         },
         "Cypress Creek Trails": {
             "group_photo": True,
@@ -14,6 +16,8 @@ def get_fb_groups():
             "scrape_url": None,
             "id": "160122897466548",
             "location": "14234 W Cypress Forest Dr, Houston, TX 77070",
+            "open": '',
+            "closed": '',
         },
         "Memorial Park Trails": {
             "group_photo": True,
@@ -21,6 +25,8 @@ def get_fb_groups():
             "scrape_url": None,
             "id": "134220983339617",
             "location": "N Picnic Ln, Houston, TX 77007",
+            "open": '',
+            "closed": '',
         },
         "Brazos River Trails": {
             "group_photo": True,
@@ -28,6 +34,8 @@ def get_fb_groups():
             "scrape_url": None,
             "id": "157990614387212",
             "location": "8125 Homeward Way, Sugar Land, TX 77479",
+            "open": '',
+            "closed": '',
         },
         "Pearland MTB Trail": {
             "group_photo": True,
@@ -35,6 +43,8 @@ def get_fb_groups():
             "scrape_url": None,
             "id": "768933773193257",
             "location": "Province Village Dr, Pearland, TX 77581",
+            "open": '',
+            "closed": '',
         },
         "Fonteno Park Trails": {
             "group_photo": True,
@@ -42,6 +52,8 @@ def get_fb_groups():
             "scrape_url": None,
             "id": "667149480730957",
             "location": "14350 1/2 Wallisville Rd, Houston, TX 77049",
+            "open": '',
+            "closed": '',
         },
         "League City Trails": {
             "group_photo": True,
@@ -49,12 +61,16 @@ def get_fb_groups():
             "scrape_url": None,
             "id": "1417274005224393",
             "location": "100 Alderwood St, League City, TX 77573",
+            "open": '',
+            "closed": '',
         },
         "Bridgeland Trails": {
             "group_photo": True,
             "scrape": False,
             "id": "1034914603303904",
             "location": "18310 House Hahl Rd, Cypress, TX 77433",
+            "open": '',
+            "closed": '',
         },
         "Chisenhall Trails": {
             "group_photo": True,
@@ -62,13 +78,17 @@ def get_fb_groups():
             "scrape_url": None,
             "id": "579687176161531",
             "location": "500 W Hidden Creek Pkwy, Burleson, TX 76028",
+            "open": '',
+            "closed": '',
         },
         "Coler MTB Preserve": {
             "group_photo": False,
             "scrape": True,
             "scrape_url": "https://www.facebook.com/groups/262979124112610/announcements",
             "id": "262979124112610",
-            "location": "",
+            "location": "2500 NW Grove Lane, Bentonville, AR 72712",
+            "open": '',
+            "closed": '',
         },
         # "Dana Peak Trails": {
         #     "group_photo": False,
