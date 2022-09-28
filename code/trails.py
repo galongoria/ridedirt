@@ -9,7 +9,7 @@ db_pass = os.getenv("password")
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:{db_pass}@localhost/ridedirt'
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] =False
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
@@ -21,17 +21,21 @@ class Trail(db.Model):
 	fb_id = db.Column(db.String(100))
 	fb_url = db.Column(db.String(100))
 	location = db.Column(db.String(100))
-	status = db.Column(db.String(100))
+	open_ = db.Column(db.String(100))
+	closed = db.Column(db.String(100))
 
-	def __init__(self, front_name, fb_name, fb_id, fb_url, location, status):
+
+	def __init__(self, front_name, fb_name, fb_id, fb_url, location, open_, closed):
 
 		self.front_name = front_name
 		self.fb_name = fb_name
 		self.fb_id = fb_id
 		self.fb_url = fb_url
 		self.location = location
-		self.status = status
+		self.open_ = open_
+		self.closed = closed
 
+		
 	def insert_static_trail_data():
 
 		row_list = get_static()
