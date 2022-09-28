@@ -5,35 +5,39 @@
 		{% if item1 == None %}
 			<div class="container">
 				<div class="row justify-content-around">
-				    <div class="col-5">
-				      <p>Trail: {{item2.front_name}}</p>
-				      <p>Status: {{item2.status}}</p>
+				    <div class="col-6">
+				      <h3>{{item2.front_name}}</h4>
+				      <p>{{item2.status}}</p>
+				      <a href={{item2.fb_url}}>Facebook Group</a>
 				    </div>
-				  	<div class="col-5">
+				  	<div class="col-6">
 				    </div>
 		  		</div>
 		  	</div>
 		{% elif item2 == None %}
 			<div class="container">
 				<div class="row justify-content-around">
-				    <div class="col-5">
-				      <p>Trail: {{item1.front_name}}</p>
-				      <p>Status: {{item1.status}}</p>
+				    <div class="col-6">
+				      <h3>{{item1.front_name}}</h4>
+				      <p>{{item1.status}}</p>
+				      <a href={{item1.fb_url}}>Facebook Group</a>
 				    </div>
-				    <div class="col-5">
+				    <div class="col-6">
 				    </div>
 		  		</div>
 		  	</div>
 		{% else %}
 			<div class="container">
 				<div class="row justify-content-around">
-				    <div class="col-5">
-				      <p>Trail: {{item1.front_name}}</p>
-				      <p>Status: {{item1.status}}</p>
+				    <div class="col-6">
+				      <h3>{{item1.front_name}}</h4>
+				      <p>{{item1.status}}</p>
+				      <a href={{item1.fb_url}}>Facebook Group</a>
 				    </div>
-				    <div class="col-5">
-				      <p>Trail: {{item2.front_name}}</p>
-				      <p>Status: {{item2.status}}</p>
+				    <div class="col-6">
+				      <h3>{{item2.front_name}}</h4>
+				      <p>{{item2.status}}</p>
+				      <a href={{item2.fb_url}}>Facebook Group</a>
 				    </div>
 		  		</div>
 		  	</div>
