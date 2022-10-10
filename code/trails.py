@@ -13,7 +13,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
-class Trail(db.Model):
+class TrailSystem(db.Model):
 
 	id_ = db.Column(db.Integer, primary_key=True)
 	front_name = db.Column(db.String(100))
@@ -35,32 +35,46 @@ class Trail(db.Model):
 		self.open_ = open_
 		self.closed = closed
 
-		
-	def insert_static_trail_data():
+
+	def create_trail_columns():
 
 		row_list = get_static()
 		for row in row_list:
 			print(row)
-			data = Trail(row[0], row[1], row[2], row[3], row[4], row[5])
+			data = TrailSystem(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
 			db.session.add(data)
 		db.session.commit()
 
-	def insert_trail_status():
+	def update_binary_status():
 
 		status_dict = compare_all()
 		for name, status in status_dict.items():
-			found_name = Trail.query.filter_by(fb_name=name).first()
-			found_name.status = status
-			db.session.commit()
+			if status == 'open':
+				found_name = TrailSystem.query.filter_by(fb_name=name).first()
+				found_name.open_ = "Everything's Open!" 
+				found_name.closed= ""
+				db.session.commit()
+			else:
+				found_name = TrailSystem.query.filter_by(fb_name=name).first()
+				found_name.open_ = "" 
+				found_name.closed= "Trails are too muddy."
+				db.session.commit()
 
 
-	def main(*args):
-		
-		for arg in args:
-			if arg == 'update_static':
-				Trail.insert_static_trail_data()
-			if arg == 'check_status':
-				Trail.insert_trail_status()
+
+def main(*args):
+	
+	for arg in args:
+		if arg == 'create_static':
+			TrailSystem.create_trail_columns()
+		if arg == 'check_status':
+			TrailSystem.update_binary_status()
+
+if __name__ == "__main__":
+
+	db.create_all()
+
+	main('create_static', 'check_status')
 
 
 	

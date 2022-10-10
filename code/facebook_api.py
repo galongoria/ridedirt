@@ -82,7 +82,7 @@ def get_static():
             print(f'Looking at {trail}')
             try:
                 name, datetime_string, pic = get_group_picture(str(value['id']))
-                l.append((trail, name, value['id'], f'https://www.facebook.com/groups/{value["id"]}',value['location'],''))
+                l.append((trail, name, value['id'], f'https://www.facebook.com/groups/{value["id"]}',value['location'],'',''))
             except facebook.GraphAPIError as error:
                 print('!!! Check_id !!!')
     return l

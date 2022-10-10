@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for, render_template, request, session, f
 from datetime import timedelta
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
-from trails import Trail
+from trails import TrailSystem
 from facebook_api import compare_all
 from itertools import zip_longest
 import os
@@ -34,7 +34,7 @@ def home():
 @app.route("/trails", methods=["GET"])
 def trails():
 
-	return render_template('trails.html', values=Trail.query.all(), zip_longest=zip_longest)
+	return render_template('trails.html', values=TrailSystem.query.all(), zip_longest=zip_longest)
 
 
 @app.route("/view")
