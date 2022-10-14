@@ -23,7 +23,6 @@ app.jinja_env.filters['zip_longest'] = zip_longest
 
 db = SQLAlchemy(app)
 
-
 @app.route("/")
 def home():
 	return render_template("index.html")
@@ -32,16 +31,9 @@ def home():
 @app.route("/trails", methods=["GET"])
 def trails():
 
-	return render_template('trails.html', values=TrailSystem.query.all(), zip_longest=zip_longest)
 
 
-@app.route("/logout")
-def logout():
-	flash("You have been logged out!", "info")
-	session.pop("user", None)
-	session.pop("email", None)
-	return redirect(url_for("login"))
-
+	return render_template('trails.html', values=TrailSystem.query.order_by(TrailSystem.updated.desc()).limit(9).all(), zip_longest=zip_longest)
 
 if __name__ == "__main__":
 

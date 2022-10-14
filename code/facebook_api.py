@@ -1,5 +1,4 @@
 from datetime import datetime
-import pandas as pd
 import regex as re
 import os, urllib.request, facebook
 from dotenv import load_dotenv
@@ -45,11 +44,11 @@ def compare_picture(abspath, trail_name):
         pic = open(abspath, 'rb').read()
         if pic == ref_pic:
             if 'open' in ref_pic_name:
-                return 'open'
+                return "Everything's open!"
             elif 'closed' in ref_pic_name:
-                return 'closed'
+                return 'Trails are too muddy today.'
         else:
-            status = 'no_match'
+            status = 'No match.'
     return status
 
 def compare_all():
@@ -57,35 +56,19 @@ def compare_all():
     """Gets pictures and runs the compare method for every group in the dictionary"""
 
     group_dict = get_fb_groups()
-    d = {}
+    db_list = []
 
-    for trail, value in group_dict.items():
-        if value['group_photo']:
+    for trail, options in group_dict.items():
+        if options['group_photo']:
             print(f'Looking at {trail}')
             try:
-                name, datetime_string, pic = get_group_picture(str(value['id']))
+                name, datetime_string, pic = get_group_picture(str(options['id']))
                 abspath = save_image(name, datetime_string, pic)
-                d[name] = compare_picture(abspath, name)
+                status = compare_picture(abspath, name)
+                
             except facebook.GraphAPIError as error:
-                d[name] = 'check_id'
-    return d
-
-def get_static():
-
-    """Gets information for static columns"""
-
-    group_dict = get_fb_groups()
-    l = []
-
-    for trail, value in group_dict.items():
-        if value['group_photo']:
-            print(f'Looking at {trail}')
-            try:
-                name, datetime_string, pic = get_group_picture(str(value['id']))
-                l.append((trail, name, value['id'], f'https://www.facebook.com/groups/{value["id"]}',value['location'],'',''))
-            except facebook.GraphAPIError as error:
-                print('!!! Check_id !!!')
-    return l
-
+                status = 'check parameters'
+            db_list.append((trail, name, options['id'], f'https://www.facebook.com/groups/{options["id"]}',options['location'],status, datetime.now()))
+    return db_list
 
 
